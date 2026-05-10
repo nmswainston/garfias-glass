@@ -119,19 +119,82 @@ export default function GarfiasRanchHomepage() {
             background: "linear-gradient(90deg,rgba(234,219,197,.97) 0%,rgba(234,219,197,.88) 32%,rgba(234,219,197,.55) 56%,rgba(234,219,197,.08) 100%)"
           }} />
 
+          {/* Art showcase – desktop only */}
+          <div className="absolute inset-0 z-10 hidden lg:block pointer-events-none">
+            <div className="relative h-full mx-auto max-w-7xl px-8">
+
+              {/* Soft warm glow behind the cluster so pieces feel placed, not pasted */}
+              <div className="absolute" style={{
+                right: "-4%", top: "4%", width: "52%", height: "92%",
+                background: "radial-gradient(ellipse at 60% 50%, rgba(234,219,197,0.22) 0%, rgba(234,219,197,0) 68%)",
+              }} />
+
+              {/* Dragonfly – upper, pulled down and left so it's fully visible */}
+              <img
+                src="/Art2.avif"
+                alt="Stained glass dragonfly suncatcher"
+                className="absolute w-[148px] xl:w-[168px]"
+                style={{
+                  top: "17%", right: "18%",
+                  transform: "rotate(-4deg)",
+                  border: "3px solid rgba(234,219,197,0.5)",
+                  borderRadius: "2px",
+                  boxShadow: "0 18px 50px rgba(0,0,0,0.38)",
+                  zIndex: 1,
+                }}
+              />
+
+              {/* Cactus scene – centre star piece, overlaps dragonfly for depth */}
+              <img
+                src="/Art1.avif"
+                alt="Desert cactus stained glass"
+                className="absolute w-[190px] xl:w-[218px]"
+                style={{
+                  top: "38%", right: "7%",
+                  transform: "rotate(2.5deg)",
+                  border: "3px solid rgba(234,219,197,0.5)",
+                  borderRadius: "2px",
+                  boxShadow: "0 22px 60px rgba(0,0,0,0.44)",
+                  zIndex: 3,
+                }}
+              />
+
+              {/* Cross – lower, tucked in so the cluster feels tight */}
+              <img
+                src="/Art4.avif"
+                alt="Stained glass cross with lily"
+                className="absolute w-[145px] xl:w-[165px]"
+                style={{
+                  top: "63%", right: "21%",
+                  transform: "rotate(-1.5deg)",
+                  border: "3px solid rgba(234,219,197,0.5)",
+                  borderRadius: "2px",
+                  boxShadow: "0 18px 50px rgba(0,0,0,0.38)",
+                  zIndex: 2,
+                }}
+              />
+            </div>
+          </div>
 
           {/* Header / Nav */}
           <header className="relative z-20 mx-auto flex max-w-7xl items-start justify-between px-4 sm:px-8 pt-5 sm:pt-8">
             <Logo variant="header" />
             <nav className="hidden items-center gap-7 pt-6 text-[12px] font-bold uppercase tracking-[0.12em] text-[#2e1f14] lg:flex">
               <a href="#" aria-current="page" className="border-b-2 border-[#0b565c] pb-0.5 text-[#0b565c]">Home</a>
-              <a href="#" className="flex items-center gap-1 hover:text-[#0b565c] transition-colors">
+              <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-[#0b565c] transition-colors">
                 Shop <ChevronDown className="h-3 w-3" />
               </a>
               <a href="#" className="hover:text-[#0b565c] transition-colors">About</a>
-              <a href="#" className="hover:text-[#0b565c] transition-colors">Custom Orders</a>
+              <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" className="hover:text-[#0b565c] transition-colors">Custom Orders</a>
               <a href="#" className="hover:text-[#0b565c] transition-colors">Galleries</a>
               <a href="#" className="hover:text-[#0b565c] transition-colors">Contact</a>
+              <span className="h-7 w-px bg-[#2e1f14]/25" />
+              <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#0b565c] transition-colors">
+                <InstagramIcon className="h-5 w-5" />
+              </a>
+              <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#0b565c] transition-colors">
+                <FacebookIcon className="h-5 w-5" />
+              </a>
               <span className="h-7 w-px bg-[#2e1f14]/25" />
               <Search className="h-5 w-5 cursor-pointer hover:text-[#0b565c] transition-colors" />
               <ShoppingBag className="h-5 w-5 cursor-pointer hover:text-[#0b565c] transition-colors" />
@@ -149,7 +212,7 @@ export default function GarfiasRanchHomepage() {
               <p className="mt-4 sm:mt-5 max-w-[300px] text-[14px] sm:text-[16px] leading-relaxed">
                 30 years of stained glass, copper & color. Handmade in the Arizona desert.
               </p>
-              <a href="#"
+              <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer"
                 className="mt-5 sm:mt-8 inline-flex items-center gap-3 bg-[#0b565c] px-6 sm:px-7 py-3 sm:py-4 playfair text-[11px] font-bold uppercase tracking-[0.2em] text-[#eadbc5] hover:bg-[#084d53] transition-colors"
               >
                 Shop the Collection <span className="ml-1">&#8594;</span>
@@ -208,7 +271,9 @@ export default function GarfiasRanchHomepage() {
             {categories.map((cat) => (
               <a
                 key={cat.title}
-                href="#"
+                href="https://www.etsy.com/shop/RMglassandcopper"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group block overflow-hidden bg-[#eadbc5] shadow-md hover:shadow-xl transition-shadow"
               >
                 <div className="aspect-[3/4] overflow-hidden">
@@ -284,10 +349,10 @@ export default function GarfiasRanchHomepage() {
               See new pieces, behind the scenes and ranch life.
             </p>
             <div className="mt-4 flex gap-3 text-[#0b565c]">
-              <a href="#" aria-label="Instagram" className="hover:opacity-65 transition-opacity">
+              <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:opacity-65 transition-opacity">
                 <InstagramIcon className="h-6 w-6" />
               </a>
-              <a href="#" aria-label="Facebook" className="hover:opacity-65 transition-opacity">
+              <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-65 transition-opacity">
                 <FacebookIcon className="h-6 w-6" />
               </a>
             </div>
@@ -312,22 +377,37 @@ export default function GarfiasRanchHomepage() {
           <div>
             <Logo variant="footer" />
             <p className="mt-5 text-[11px] leading-relaxed text-[#eadbc5]/50">
-              &copy; 2024 Garfias Ranch Stained Glass Art.<br />All Rights Reserved.
+              &copy; 2025 Garfias Mountain Glass Art.<br />All Rights Reserved.
             </p>
           </div>
           <div>
             <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">Quick Links</h3>
             <ul className="mt-4 space-y-2.5 text-[13px] text-[#eadbc5]/65">
-              {["Shop", "About", "Custom Orders", "Galleries", "Contact"].map((link) => (
-                <li key={link}><a href="#" className="hover:text-[#eadbc5] transition-colors">{link}</a></li>
+              {[
+                { label: "Shop", href: "https://www.etsy.com/shop/RMglassandcopper" },
+                { label: "About", href: "#" },
+                { label: "Custom Orders", href: "https://www.etsy.com/shop/RMglassandcopper" },
+                { label: "Galleries", href: "#" },
+                { label: "Contact", href: "#" },
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="hover:text-[#eadbc5] transition-colors">{label}</a>
+                </li>
               ))}
             </ul>
           </div>
           <div>
             <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">Info</h3>
             <ul className="mt-4 space-y-2.5 text-[13px] text-[#eadbc5]/65">
-              {["Shipping & Policies", "Care Instructions", "Returns", "FAQ"].map((link) => (
-                <li key={link}><a href="#" className="hover:text-[#eadbc5] transition-colors">{link}</a></li>
+              {[
+                { label: "Shipping & Policies", href: "https://www.etsy.com/shop/RMglassandcopper#policies" },
+                { label: "Care Instructions", href: "#" },
+                { label: "Returns", href: "https://www.etsy.com/shop/RMglassandcopper#policies" },
+                { label: "FAQ", href: "#" },
+              ].map(({ label, href }) => (
+                <li key={label}>
+                  <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="hover:text-[#eadbc5] transition-colors">{label}</a>
+                </li>
               ))}
             </ul>
           </div>
