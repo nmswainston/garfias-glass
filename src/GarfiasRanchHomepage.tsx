@@ -107,7 +107,7 @@ export default function GarfiasRanchHomepage() {
 
         {/* Hero */}
         <section
-          className="relative overflow-hidden min-h-[480px] sm:min-h-[620px] lg:min-h-[780px]"
+          className="relative overflow-hidden min-h-screen"
           style={{
             backgroundImage: "url('/hero.jpg')",
             backgroundSize: "cover",
