@@ -1,5 +1,5 @@
-import { Heart, Search, ShoppingBag, ChevronDown, Truck } from "lucide-react";
-import { FacebookIcon, InstagramIcon } from "./SocialBrandIcons";
+import { Heart, ChevronDown, Truck } from "lucide-react";
+import { FacebookIcon, InstagramIcon, EtsyIcon } from "./SocialBrandIcons";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
@@ -131,8 +131,8 @@ export default function GarfiasRanchHomepage() {
 
               {/* Dragonfly – upper, pulled down and left so it's fully visible */}
               <img
-                src="/Art2.avif"
-                alt="Stained glass dragonfly suncatcher"
+                src="/Art5.webp"
+                alt="Stained glass evil eye flower suncatcher"
                 className="absolute w-[148px] xl:w-[168px]"
                 style={{
                   top: "17%", right: "18%",
@@ -195,9 +195,9 @@ export default function GarfiasRanchHomepage() {
               <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#0b565c] transition-colors">
                 <FacebookIcon className="h-5 w-5" />
               </a>
-              <span className="h-7 w-px bg-[#2e1f14]/25" />
-              <Search className="h-5 w-5 cursor-pointer hover:text-[#0b565c] transition-colors" />
-              <ShoppingBag className="h-5 w-5 cursor-pointer hover:text-[#0b565c] transition-colors" />
+              <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="hover:text-[#0b565c] transition-colors">
+                <EtsyIcon className="h-5 w-5" />
+              </a>
             </nav>
           </header>
 
