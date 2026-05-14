@@ -1,53 +1,50 @@
 # Garfias Mountain Glass Art
 
-A website for Garfias Mountain Glass Art — showcasing handcrafted glass artwork, portfolio pieces, and business information.
+A website for a glass art business — showcasing handcrafted artwork and business information.
 
-## Overview
+## Problem
 
-Built for Garfias Mountain Glass Art, this site serves as an online presence and portfolio for a glass art business. It features a clean, visual-first design that puts the artwork front and center.
+Garfias Mountain Glass Art had no online presence, making it hard for potential customers to discover the business or view the portfolio of work.
+
+## Solution
+
+Built a clean, visual-first website that puts the artwork front and center, with fast load times and a design that complements the aesthetic of the art itself.
+
+## Screenshots
+
+> *Add 2–4 screenshots here*
 
 ## Tech Stack
 
 - TypeScript
 - Vite
 - Tailwind CSS
-- PostCSS
 
-## Getting Started
+## Features
 
-### Prerequisites
+- Portfolio gallery of glass art pieces
+- Business info, contact, and location details
+- Fully responsive mobile layout
+- Optimized image delivery for artwork photography
 
-- Node.js 18+
-- npm
-
-### Installation
+## Installation
 
 ```bash
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
-### Build
+## Lessons Learned
 
-```bash
-npm run build
-```
+- Working with a client's design preferences requires flexibility and clear communication
+- Image optimization is critical for art portfolios where visuals are the product
+- Tailwind CSS speeds up responsive layout work significantly
 
-## Project Structure
+## Future Improvements
 
-```
-src/         # Application source code
-public/      # Static assets and images
-```
-
-## Deployment
-
-Built for static hosting. Run `npm run build` and deploy the `dist/` folder to your preferred host (Netlify, Vercel, etc.).
+- Add an e-commerce/commission request flow
+- Lightbox gallery for full-size artwork viewing
+- SEO improvements for local search visibility
 
 ---
 
