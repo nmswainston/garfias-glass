@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Heart, ChevronDown, Truck, Menu, X } from "lucide-react";
+import { ArrowUp, Heart, ChevronDown, Truck, Menu, X } from "lucide-react";
 import { FacebookIcon, InstagramIcon, EtsyIcon } from "./SocialBrandIcons";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
@@ -8,28 +8,28 @@ const ETSY = "https://www.etsy.com/shop/RMglassandcopper";
 const NAV_LINKS = [
   { label: "Home", href: "#" },
   { label: "Shop", href: ETSY, external: true },
-  { label: "About", href: "#" },
+  { label: "About", href: "#about" },
   { label: "Custom Orders", href: ETSY, external: true },
-  { label: "Galleries", href: "#" },
-  { label: "Contact", href: "#" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "Contact", href: "#contact" },
 ];
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 
 const categories = [
-  { title: "Suncatchers", image: "https://images.unsplash.com/photo-1541411438265-4cb4687110f2?auto=format&fit=crop&w=700&q=80" },
-  { title: "Desert Scenes", image: "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=700&q=80" },
-  { title: "Crosses & Faith", image: "https://images.unsplash.com/photo-1602524206684-995f1d22876b?auto=format&fit=crop&w=700&q=80" },
-  { title: "Seasonal", image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=700&q=80" },
-  { title: "Abstract", image: "https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=700&q=80" },
-  { title: "Evil Eye", image: "https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=700&q=80" },
+  { title: "Suncatchers", image: "/bee-flower1.jpg" },
+  { title: "Arizona Pieces", image: "/az-flag.jpg" },
+  { title: "Dragonflies", image: "/dragonfly2.jpg" },
+  { title: "Garden Art", image: "/plank1.jpg" },
+  { title: "Statement Panels", image: "/tropical-scene.jpg" },
+  { title: "Coastal Panels", image: "/lighthouse1.jpg" },
 ];
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1509316785289-025f5b846b35?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=600&q=80",
-  "https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=600&q=80",
+  { src: "/az-flag.jpg", alt: "Arizona flag stained glass panel" },
+  { src: "/bee-flower1.jpg", alt: "Bee and flower stained glass suncatcher" },
+  { src: "/dragonfly2.jpg", alt: "Dragonfly glass suncatcher at sunset" },
+  { src: "/plank1.jpg", alt: "Wood and stained glass garden art" },
 ];
 
 // ─── Logo (image-based) ───────────────────────────────────────────────────────
@@ -106,11 +106,16 @@ function SunriseIcon({ className = "" }: { className?: string }) {
 export default function GarfiasRanchHomepage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   // Sticky header: appears after scrolling ~75% of the hero
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.75);
+    const onScroll = () => {
+      setScrolled(window.scrollY > window.innerHeight * 0.75);
+      setShowScrollTop(window.scrollY > window.innerHeight * 0.65);
+    };
     window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -127,6 +132,20 @@ export default function GarfiasRanchHomepage() {
     window.addEventListener("scroll", revealOnScroll, { passive: true });
     revealOnScroll(); // check immediately on mount
     return () => window.removeEventListener("scroll", revealOnScroll);
+  }, []);
+
+  // Keep hash links reliable after React renders the section targets
+  useEffect(() => {
+    const scrollToHash = () => {
+      const id = window.location.hash.replace("#", "");
+      if (!id) return;
+      requestAnimationFrame(() => {
+        document.getElementById(id)?.scrollIntoView({ block: "start" });
+      });
+    };
+    scrollToHash();
+    window.addEventListener("hashchange", scrollToHash);
+    return () => window.removeEventListener("hashchange", scrollToHash);
   }, []);
 
   return (
@@ -213,47 +232,47 @@ export default function GarfiasRanchHomepage() {
                 background: "radial-gradient(ellipse at 60% 50%, rgba(234,219,197,0.22) 0%, rgba(234,219,197,0) 68%)",
               }} />
 
-              {/* Dragonfly – upper, pulled down and left so it's fully visible */}
+              {/* Desert cactus piece, kept as the Arizona anchor */}
               <img
-                src="/Art5.webp"
-                alt="Stained glass evil eye flower suncatcher"
-                className="absolute w-[148px] xl:w-[168px]"
+                src="/Art1.avif"
+                alt="Desert cactus stained glass"
+                className="absolute w-[150px] xl:w-[172px]"
                 style={{
-                  top: "17%", right: "18%",
-                  transform: "rotate(-4deg)",
-                  border: "3px solid rgba(234,219,197,0.5)",
+                  top: "18%", right: "29%",
+                  transform: "rotate(-4.5deg)",
+                  border: "3px solid rgba(234,219,197,0.62)",
                   borderRadius: "2px",
-                  boxShadow: "0 18px 50px rgba(0,0,0,0.38)",
+                  boxShadow: "0 18px 50px rgba(0,0,0,0.34)",
                   zIndex: 1,
                 }}
               />
 
-              {/* Cactus scene – centre star piece, overlaps dragonfly for depth */}
+              {/* Tropical scene, largest feature piece */}
               <img
-                src="/Art1.avif"
-                alt="Desert cactus stained glass"
-                className="absolute w-[190px] xl:w-[218px]"
+                src="/tropical-scene.jpg"
+                alt="Stained glass tropical bird scene"
+                className="absolute w-[220px] xl:w-[258px]"
                 style={{
-                  top: "38%", right: "7%",
-                  transform: "rotate(2.5deg)",
-                  border: "3px solid rgba(234,219,197,0.5)",
+                  top: "34%", right: "8%",
+                  transform: "rotate(2deg)",
+                  border: "3px solid rgba(234,219,197,0.62)",
                   borderRadius: "2px",
-                  boxShadow: "0 22px 60px rgba(0,0,0,0.44)",
+                  boxShadow: "0 22px 60px rgba(0,0,0,0.38)",
                   zIndex: 3,
                 }}
               />
 
-              {/* Cross – lower, tucked in so the cluster feels tight */}
+              {/* Lighthouse panel, lower supporting piece */}
               <img
-                src="/Art4.avif"
-                alt="Stained glass cross with lily"
-                className="absolute w-[145px] xl:w-[165px]"
+                src="/lighthouse1.jpg"
+                alt="Stained glass lighthouse panel"
+                className="absolute w-[160px] xl:w-[184px]"
                 style={{
-                  top: "63%", right: "21%",
-                  transform: "rotate(-1.5deg)",
-                  border: "3px solid rgba(234,219,197,0.5)",
+                  top: "64%", right: "26%",
+                  transform: "rotate(-2deg)",
+                  border: "3px solid rgba(234,219,197,0.62)",
                   borderRadius: "2px",
-                  boxShadow: "0 18px 50px rgba(0,0,0,0.38)",
+                  boxShadow: "0 18px 50px rgba(0,0,0,0.34)",
                   zIndex: 2,
                 }}
               />
@@ -261,38 +280,38 @@ export default function GarfiasRanchHomepage() {
           </div>
 
           {/* Art showcase – mobile only */}
-          <div className="absolute inset-x-0 bottom-[10%] z-10 flex lg:hidden justify-center items-end gap-3 px-6 pointer-events-none">
+          <div className="absolute inset-x-0 bottom-[10%] z-10 flex lg:hidden justify-center items-end gap-2 px-4 pointer-events-none">
             <img
-              src="/Art5.webp"
-              alt="Stained glass evil eye flower suncatcher"
-              className="w-[95px]"
+              src="/lighthouse1.jpg"
+              alt="Stained glass lighthouse panel"
+              className="w-[78px]"
               style={{
                 transform: "rotate(-3deg)",
-                border: "2px solid rgba(234,219,197,0.5)",
+                border: "2px solid rgba(234,219,197,0.62)",
                 borderRadius: "2px",
-                boxShadow: "0 10px 28px rgba(0,0,0,0.4)",
+                boxShadow: "0 10px 28px rgba(0,0,0,0.36)",
+              }}
+            />
+            <img
+              src="/tropical-scene.jpg"
+              alt="Stained glass tropical bird scene"
+              className="w-[102px]"
+              style={{
+                transform: "rotate(1.5deg)",
+                border: "2px solid rgba(234,219,197,0.62)",
+                borderRadius: "2px",
+                boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
               }}
             />
             <img
               src="/Art1.avif"
               alt="Desert cactus stained glass"
-              className="w-[105px]"
-              style={{
-                transform: "rotate(1.5deg)",
-                border: "2px solid rgba(234,219,197,0.5)",
-                borderRadius: "2px",
-                boxShadow: "0 12px 32px rgba(0,0,0,0.44)",
-              }}
-            />
-            <img
-              src="/Art4.avif"
-              alt="Stained glass cross with lily"
-              className="w-[95px]"
+              className="w-[78px]"
               style={{
                 transform: "rotate(-2deg)",
-                border: "2px solid rgba(234,219,197,0.5)",
+                border: "2px solid rgba(234,219,197,0.62)",
                 borderRadius: "2px",
-                boxShadow: "0 10px 28px rgba(0,0,0,0.4)",
+                boxShadow: "0 10px 28px rgba(0,0,0,0.36)",
               }}
             />
           </div>
@@ -308,10 +327,10 @@ export default function GarfiasRanchHomepage() {
                 <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-[#0b565c] transition-colors">
                   Shop <ChevronDown className="h-3 w-3" />
                 </a>
-                <a href="#" className="hover:text-[#0b565c] transition-colors">About</a>
+                <a href="#about" className="hover:text-[#0b565c] transition-colors">About</a>
                 <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" className="hover:text-[#0b565c] transition-colors">Custom Orders</a>
-                <a href="#" className="hover:text-[#0b565c] transition-colors">Galleries</a>
-                <a href="#" className="hover:text-[#0b565c] transition-colors">Contact</a>
+                <a href="#gallery" className="hover:text-[#0b565c] transition-colors">Gallery</a>
+                <a href="#contact" className="hover:text-[#0b565c] transition-colors">Contact</a>
                 <span className="h-7 w-px bg-[#2e1f14]/25" />
                 <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#0b565c] transition-colors">
                   <InstagramIcon className="h-5 w-5" />
@@ -348,10 +367,10 @@ export default function GarfiasRanchHomepage() {
                   {[
                     { label: "Home", href: "#" },
                     { label: "Shop", href: "https://www.etsy.com/shop/RMglassandcopper", external: true },
-                    { label: "About", href: "#" },
+                    { label: "About", href: "#about" },
                     { label: "Custom Orders", href: "https://www.etsy.com/shop/RMglassandcopper", external: true },
-                    { label: "Galleries", href: "#" },
-                    { label: "Contact", href: "#" },
+                    { label: "Gallery", href: "#gallery" },
+                    { label: "Contact", href: "#contact" },
                   ].map(({ label, href, external }) => (
                     <a
                       key={label}
@@ -405,8 +424,8 @@ export default function GarfiasRanchHomepage() {
       <section className="grid grid-cols-1 lg:grid-cols-3 reveal">
         <img
           className="h-[360px] w-full object-cover"
-          src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=1200&q=90"
-          alt="Arizona desert at sunset"
+          src="/shop1.jpg"
+          alt="Sheets of stained glass organized in the studio"
         />
         <div className="flex h-[360px] flex-col items-center justify-center bg-[#eadbc5] px-10 text-center">
           <SunRays />
@@ -416,18 +435,69 @@ export default function GarfiasRanchHomepage() {
           <p className="text-[13px] leading-relaxed max-w-[210px]">
             Every piece is individually designed and handcrafted in our ranch studio in Arizona.
           </p>
-          <button
-            type="button"
+          <a
+            href="#about"
             className="mt-5 border border-[#2e1f14]/45 px-9 py-2.5 playfair text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#2e1f14]/5 transition-colors"
           >
             Our Story
-          </button>
+          </a>
         </div>
         <img
           className="h-[360px] w-full object-cover"
-          src="https://images.unsplash.com/photo-1507041957456-9c397ce39c97?auto=format&fit=crop&w=1200&q=90"
-          alt="Artist working on stained glass"
+          src="/shop2.jpg"
+          alt="Garfias Mountain Glass Art studio workspace"
         />
+      </section>
+
+      {/* About Ronda */}
+      <section id="about" className="bg-[#f2e5d2] px-8 py-16 scroll-mt-24">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#0b565c]">Meet the Artist</p>
+            <h2 className="playfair mt-3 text-[38px] font-black leading-tight text-[#2e1f14] sm:text-[46px]">
+              Ronda Myers
+            </h2>
+            <p className="playfair mt-2 text-[22px] italic text-[#0b565c]">
+              Garfias Mountain Glass Art
+            </p>
+            <Diamond className="mt-5 text-[#2e1f14]" />
+          </div>
+          <div className="space-y-4 text-[15px] leading-7 text-[#2e1f14]/82">
+            <p>
+              Ronda Myers has loved stained glass since childhood. Growing up in the Midwest, she was mesmerized by the stained glass windows in the Victorian homes around her hometown, drawn to their color, design, and the feeling they created when sunlight moved through them.
+            </p>
+            <p>
+              Even then, she wanted to know how those windows were made. Years later, after moving to Arizona, she found a stained glass course through a local city art program and finally had the chance to learn the craft herself.
+            </p>
+            <p>
+              With guidance from an experienced and encouraging instructor, Ronda learned the foundations of stained glass window making and kept going. More than 30 years later, she still designs, cuts, solders, and finishes each piece by hand from her Arizona studio.
+            </p>
+            <p>
+              She has also started creating copper and glass windchimes, made to bring color, light, and sound outdoors. Each one is built with glass beads, crystals, copper, and brass bells so it can stand up to weather and wind while keeping a delicate look.
+            </p>
+            <p>
+              Garfias Mountain Glass Art is her way of sharing that lifelong love of glass with others. She hopes each piece brings as much joy to its new home as she had while making it.
+            </p>
+            <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+              <a
+                href={ETSY}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center bg-[#0b565c] px-6 py-3 playfair text-[11px] font-bold uppercase tracking-[0.18em] text-[#eadbc5] hover:bg-[#084d53] transition-colors"
+              >
+                Shop Available Pieces
+              </a>
+              <a
+                href={ETSY}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center border border-[#2e1f14]/45 px-6 py-3 playfair text-[11px] font-bold uppercase tracking-[0.18em] text-[#2e1f14] hover:bg-[#2e1f14]/5 transition-colors"
+              >
+                Ask About Custom Work
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
 
       {/* Shop by Category */}
@@ -515,7 +585,7 @@ export default function GarfiasRanchHomepage() {
       </section>
 
       {/* Follow Along */}
-      <section className="bg-[#eadbc5] px-8 py-10 reveal">
+      <section id="gallery" className="bg-[#eadbc5] px-8 py-10 reveal scroll-mt-24">
         <div className="mx-auto max-w-7xl flex flex-col lg:flex-row gap-8 items-start">
           <div className="shrink-0 lg:w-[210px]">
             <h2
@@ -538,11 +608,11 @@ export default function GarfiasRanchHomepage() {
             <p className="mt-2 text-[12px] font-bold text-[#2e1f14]">@garfiasranchglassart</p>
           </div>
           <div className="flex-1 grid grid-cols-2 gap-2 md:grid-cols-4">
-            {galleryImages.map((src, i) => (
+            {galleryImages.map((image) => (
               <img
-                key={i}
-                src={src}
-                alt="Gallery"
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
                 className="h-44 w-full object-cover hover:opacity-90 transition-opacity cursor-pointer"
               />
             ))}
@@ -551,7 +621,7 @@ export default function GarfiasRanchHomepage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-[#2b1b10] px-8 py-12 text-[#eadbc5]">
+      <footer id="contact" className="bg-[#2b1b10] px-8 py-12 text-[#eadbc5] scroll-mt-24">
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 md:grid-cols-4">
           <div>
             <Logo variant="footer" />
@@ -560,14 +630,13 @@ export default function GarfiasRanchHomepage() {
             </p>
           </div>
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">Quick Links</h3>
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">Shop & Studio</h3>
             <ul className="mt-4 space-y-2.5 text-[13px] text-[#eadbc5]/65">
               {[
-                { label: "Shop", href: "https://www.etsy.com/shop/RMglassandcopper" },
-                { label: "About", href: "#" },
-                { label: "Custom Orders", href: "https://www.etsy.com/shop/RMglassandcopper" },
-                { label: "Galleries", href: "#" },
-                { label: "Contact", href: "#" },
+                { label: "Shop on Etsy", href: ETSY },
+                { label: "Ask About Custom Work", href: ETSY },
+                { label: "About Ronda", href: "#about" },
+                { label: "View Gallery", href: "#gallery" },
               ].map(({ label, href }) => (
                 <li key={label}>
                   <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="hover:text-[#eadbc5] transition-colors">{label}</a>
@@ -576,19 +645,21 @@ export default function GarfiasRanchHomepage() {
             </ul>
           </div>
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">Info</h3>
-            <ul className="mt-4 space-y-2.5 text-[13px] text-[#eadbc5]/65">
-              {[
-                { label: "Shipping & Policies", href: "https://www.etsy.com/shop/RMglassandcopper#policies" },
-                { label: "Care Instructions", href: "#" },
-                { label: "Returns", href: "https://www.etsy.com/shop/RMglassandcopper#policies" },
-                { label: "FAQ", href: "#" },
-              ].map(({ label, href }) => (
-                <li key={label}>
-                  <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="hover:text-[#eadbc5] transition-colors">{label}</a>
-                </li>
-              ))}
-            </ul>
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">Follow</h3>
+            <p className="mt-4 text-[13px] leading-relaxed text-[#eadbc5]/65">
+              See new pieces, studio updates, and works in progress.
+            </p>
+            <div className="mt-5 flex gap-4 text-[#eadbc5]/75">
+              <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#eadbc5] transition-colors">
+                <InstagramIcon className="h-5 w-5" />
+              </a>
+              <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#eadbc5] transition-colors">
+                <FacebookIcon className="h-5 w-5" />
+              </a>
+              <a href={ETSY} target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="hover:text-[#eadbc5] transition-colors">
+                <EtsyIcon className="h-5 w-5" />
+              </a>
+            </div>
           </div>
           <div>
             <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">
@@ -614,6 +685,17 @@ export default function GarfiasRanchHomepage() {
           </div>
         </div>
       </footer>
+
+      {showScrollTop && (
+        <button
+          type="button"
+          aria-label="Scroll to top"
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-5 right-5 z-50 inline-flex h-11 w-11 items-center justify-center bg-[#0b565c] text-[#eadbc5] shadow-xl transition-colors hover:bg-[#084d53] focus:outline-none focus:ring-2 focus:ring-[#eadbc5] focus:ring-offset-2 focus:ring-offset-[#2b1b10]"
+        >
+          <ArrowUp className="h-5 w-5" strokeWidth={1.8} />
+        </button>
+      )}
 
     </main >
     </>
