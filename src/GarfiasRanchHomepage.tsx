@@ -30,6 +30,8 @@ const galleryImages = [
   { src: "/bee-flower1.jpg", alt: "Bee and flower stained glass suncatcher" },
   { src: "/dragonfly2.jpg", alt: "Dragonfly glass suncatcher at sunset" },
   { src: "/plank1.jpg", alt: "Wood and stained glass garden art" },
+  { src: "/lighthouse1.jpg", alt: "Lighthouse stained glass panel" },
+  { src: "/tropical-scene.jpg", alt: "Tropical bird stained glass panel" },
 ];
 
 // ─── Logo (image-based) ───────────────────────────────────────────────────────
@@ -585,7 +587,7 @@ export default function GarfiasRanchHomepage() {
       </section>
 
       {/* Follow Along */}
-      <section id="gallery" className="bg-[#eadbc5] px-8 py-10 reveal scroll-mt-24">
+      <section id="gallery" className="bg-[#eadbc5] px-8 py-12 scroll-mt-24">
         <div className="mx-auto max-w-7xl flex flex-col lg:flex-row gap-8 items-start">
           <div className="shrink-0 lg:w-[210px]">
             <h2
@@ -607,13 +609,13 @@ export default function GarfiasRanchHomepage() {
             </div>
             <p className="mt-2 text-[12px] font-bold text-[#2e1f14]">@garfiasranchglassart</p>
           </div>
-          <div className="flex-1 grid grid-cols-2 gap-2 md:grid-cols-4">
+          <div className="flex flex-1 flex-wrap items-center justify-center gap-x-5 gap-y-5 lg:justify-between">
             {galleryImages.map((image) => (
               <img
                 key={image.src}
                 src={image.src}
                 alt={image.alt}
-                className="h-44 w-full object-cover hover:opacity-90 transition-opacity cursor-pointer"
+                className="h-32 w-auto max-w-[46%] object-contain transition-transform duration-500 hover:scale-[1.025] sm:h-40 sm:max-w-none lg:h-44"
               />
             ))}
           </div>
