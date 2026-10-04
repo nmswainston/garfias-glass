@@ -28,7 +28,7 @@ const categories = [
 const galleryImages = [
   { src: "/az-flag.jpg", alt: "Arizona flag stained glass panel" },
   { src: "/bee-flower1.jpg", alt: "Bee and flower stained glass suncatcher" },
-  { src: "/dragonfly2.jpg", alt: "Dragonfly glass suncatcher at sunset" },
+  { src: "/dragonfly2.jpg", alt: "Stained glass suncatcher with four colored panes and a white center" },
   { src: "/plank1.jpg", alt: "Wood and stained glass garden art" },
   { src: "/lighthouse1.jpg", alt: "Lighthouse stained glass panel" },
   { src: "/tropical-scene.jpg", alt: "Tropical bird stained glass panel" },
