@@ -28,7 +28,7 @@ The words, links and pictures of the site live in small files in `src/data/`, on
 | `home.ts` | The hero headline and button, the "Made by Hand" strip, the "Meet the Artist" text, and the teal strip of four promises |
 | `categories.ts` | The "Shop by Category" tiles |
 | `gallery.ts` | The "Follow Along" heading and text, and the row of gallery pictures (`galleryImages`) |
-| `footer.ts` | The footer's words and links |
+| `footer.ts` | The footer's words and links, and `showNewsletter`, the switch for the email sign-up box (off until a mailing list is connected to it) |
 
 `GarfiasRanchHomepage.tsx` is short. It keeps what the sections share (whether the menu is open, how far the visitor has scrolled, the scroll effects) and lists the sections top to bottom. Each section is its own small component in `src/components/`:
 
