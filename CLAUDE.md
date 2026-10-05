@@ -18,11 +18,23 @@ This is a single-page marketing site for Garfias Mountain Glass Art — a React 
 
 **Entry point:** `src/main.tsx` → `src/App.tsx` → `src/GarfiasRanchHomepage.tsx`
 
-The entire site lives in one file, `GarfiasRanchHomepage.tsx`, which is the sole exported component. It is organized top-to-bottom:
-1. Constants (`ETSY` URL, `NAV_LINKS`)
-2. Static data arrays (`categories`, `galleryImages`)
-3. Small local components (`Logo`, `SunRays`, `Diamond`, `CactusIcon`, `SunriseIcon`)
-4. The main `GarfiasRanchHomepage` export, which contains all page sections inline
+The words, links and pictures of the site live in small files in `src/data/`, one for each kind of content. The page component, `GarfiasRanchHomepage.tsx`, only draws them, so most changes are made in a data file and the layout is left alone:
+
+| File | What it holds |
+|---|---|
+| `site.ts` | The name, the Etsy, Instagram and Facebook addresses, the Instagram handle, and the top banner line |
+| `nav.ts` | The menu (one list used by the large menu, the one that slides in on scroll, and the phone menu) |
+| `collage.ts` | The art pieces pictured over the top banner, for large screens and for phones |
+| `home.ts` | The hero headline and button, the "Made by Hand" strip, the "Meet the Artist" text, and the teal strip of four promises |
+| `categories.ts` | The "Shop by Category" tiles |
+| `gallery.ts` | The "Follow Along" heading and text, and the row of gallery pictures (`galleryImages`) |
+| `footer.ts` | The footer's words and links |
+
+`GarfiasRanchHomepage.tsx` is organized top-to-bottom:
+1. Small local components (`Logo`, `SunRays`, `Diamond`, `CactusIcon`, `SunriseIcon`, `featureIcon`)
+2. The main `GarfiasRanchHomepage` export, which draws every section from the data files
+
+Keep wording, addresses and pictures in `src/data/`, not in the component. Tailwind reads `src/data/` too, so a class name written there works.
 
 `src/SocialBrandIcons.tsx` exports three hand-rolled SVG icon components (`InstagramIcon`, `FacebookIcon`, `EtsyIcon`) because lucide-react dropped brand icons.
 
