@@ -33,7 +33,7 @@ export interface PhonePiece {
 
 export const desktopCollage: DesktopPiece[] = [
   // The desert cactus piece, kept as the Arizona anchor
-  { src: "/Art1.jpg", alt: "Desert cactus stained glass", maxWidthClass: "max-w-[150px] xl:max-w-[172px]", top: "18%", right: "29%", rotate: -4.5, boxShadow: "0 18px 50px rgba(0,0,0,0.34)", layer: 1 },
+  { src: "/Art1.jpg", alt: "Blue stained glass flower with an eye in the center and a crystal hanging below", maxWidthClass: "max-w-[150px] xl:max-w-[172px]", top: "18%", right: "29%", rotate: -4.5, boxShadow: "0 18px 50px rgba(0,0,0,0.34)", layer: 1 },
   // The tropical scene, the largest feature piece
   { src: "/tropical-scene.jpg", alt: "Stained glass tropical bird scene", maxWidthClass: "max-w-[220px] xl:max-w-[258px]", top: "34%", right: "8%", rotate: 2, boxShadow: "0 22px 60px rgba(0,0,0,0.38)", layer: 3 },
   // The lighthouse panel, a lower supporting piece
@@ -43,5 +43,5 @@ export const desktopCollage: DesktopPiece[] = [
 export const phoneCollage: PhonePiece[] = [
   { src: "/lighthouse1.jpg", alt: "Stained glass lighthouse panel", maxWidthClass: "max-w-[78px]", rotate: -3, boxShadow: "0 10px 28px rgba(0,0,0,0.36)" },
   { src: "/tropical-scene.jpg", alt: "Stained glass tropical bird scene", maxWidthClass: "max-w-[102px]", rotate: 1.5, boxShadow: "0 12px 32px rgba(0,0,0,0.4)" },
-  { src: "/Art1.jpg", alt: "Desert cactus stained glass", maxWidthClass: "max-w-[78px]", rotate: -2, boxShadow: "0 10px 28px rgba(0,0,0,0.36)" },
+  { src: "/Art1.jpg", alt: "Blue stained glass flower with an eye in the center and a crystal hanging below", maxWidthClass: "max-w-[78px]", rotate: -2, boxShadow: "0 10px 28px rgba(0,0,0,0.36)" },
 ];
