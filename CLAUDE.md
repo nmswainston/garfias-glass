@@ -30,9 +30,23 @@ The words, links and pictures of the site live in small files in `src/data/`, on
 | `gallery.ts` | The "Follow Along" heading and text, and the row of gallery pictures (`galleryImages`) |
 | `footer.ts` | The footer's words and links |
 
-`GarfiasRanchHomepage.tsx` is organized top-to-bottom:
-1. Small local components (`Logo`, `SunRays`, `Diamond`, `CactusIcon`, `SunriseIcon`, `featureIcon`)
-2. The main `GarfiasRanchHomepage` export, which draws every section from the data files
+`GarfiasRanchHomepage.tsx` is short. It keeps what the sections share (whether the menu is open, how far the visitor has scrolled, the scroll effects) and lists the sections top to bottom. Each section is its own small component in `src/components/`:
+
+| File | What it draws |
+|---|---|
+| `StickyHeader.tsx` | The slim menu bar that slides down after the hero |
+| `AnnouncementBar.tsx` | The teal line at the very top |
+| `Hero.tsx` | The opening section, built from `HeroHeader.tsx` (logo, menu, phone dropdown) and `HeroCollage.tsx` (the art pieces) |
+| `MadeByHand.tsx` | The three-column strip under the hero |
+| `About.tsx` | "Meet the Artist" |
+| `ShopByCategory.tsx` | The category tiles |
+| `FeaturesStrip.tsx` | The teal strip of four promises (icons are in `FeatureIcons.tsx`) |
+| `FollowAlong.tsx` | The gallery section |
+| `Footer.tsx` | The footer |
+| `ScrollToTopButton.tsx` | The back-to-top button |
+| `Logo.tsx`, `Ornaments.tsx` | The logo image, and the small decorations (`SunRays`, `Diamond`) used by more than one section |
+
+To add a section, make a component in `src/components/`, give it a data file in `src/data/`, and add one line to `GarfiasRanchHomepage.tsx`.
 
 Keep wording, addresses and pictures in `src/data/`, not in the component. Tailwind reads `src/data/` too, so a class name written there works.
 
@@ -57,6 +71,7 @@ Every picture is a `.jpg` (logos and icons are `.png`). Keep photographs as `.jp
 
 ## Scroll behavior
 
-Two `useEffect` hooks in `GarfiasRanchHomepage` handle scroll-driven UI:
+Three `useEffect` hooks in `GarfiasRanchHomepage` handle scroll-driven UI:
 - **Sticky header** — appears with a `slideDown` animation after scrolling past 75% of the hero height
 - **Scroll-reveal** — sections with the `.reveal` CSS class fade/rise in when they enter the viewport (88% threshold). Add `className="reveal"` to any new section to get the animation automatically.
+- **Hash links** (for example `#about`) are scrolled into view again after the page renders, so menu links land in the right place.
