@@ -1,38 +1,13 @@
 import { useState, useEffect } from "react";
 import { ArrowUp, Heart, ChevronDown, Truck, Menu, X } from "lucide-react";
 import { FacebookIcon, InstagramIcon, EtsyIcon } from "./SocialBrandIcons";
-
-// ─── Constants ────────────────────────────────────────────────────────────────
-
-const ETSY = "https://www.etsy.com/shop/RMglassandcopper";
-const NAV_LINKS = [
-  { label: "Home", href: "#" },
-  { label: "Shop", href: ETSY, external: true },
-  { label: "About", href: "#about" },
-  { label: "Custom Orders", href: ETSY, external: true },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Contact", href: "#contact" },
-];
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
-
-const categories = [
-  { title: "Suncatchers", image: "/bee-flower1.jpg" },
-  { title: "Arizona Pieces", image: "/az-flag.jpg" },
-  { title: "Dragonflies", image: "/dragonfly2.jpg" },
-  { title: "Garden Art", image: "/plank1.jpg" },
-  { title: "Statement Panels", image: "/tropical-scene.jpg" },
-  { title: "Coastal Panels", image: "/lighthouse1.jpg" },
-];
-
-const galleryImages = [
-  { src: "/az-flag.jpg", alt: "Arizona flag stained glass panel" },
-  { src: "/bee-flower1.jpg", alt: "Bee and flower stained glass suncatcher" },
-  { src: "/dragonfly2.jpg", alt: "Dragonfly glass suncatcher at sunset" },
-  { src: "/plank1.jpg", alt: "Wood and stained glass garden art" },
-  { src: "/lighthouse1.jpg", alt: "Lighthouse stained glass panel" },
-  { src: "/tropical-scene.jpg", alt: "Tropical bird stained glass panel" },
-];
+import { categories, categoriesHeading } from "./data/categories";
+import { desktopCollage, phoneCollage } from "./data/collage";
+import { footer } from "./data/footer";
+import { galleryImages, galleryIntro } from "./data/gallery";
+import { about, features, hero, madeByHand, type FeatureIcon } from "./data/home";
+import { navLinks } from "./data/nav";
+import { site } from "./data/site";
 
 // ─── Logo (image-based) ───────────────────────────────────────────────────────
 // Put New_Logo.png into your project's /public folder and rename it logo.png
@@ -101,6 +76,20 @@ function SunriseIcon({ className = "" }: { className?: string }) {
       <line x1="36" y1="24" x2="40" y2="22" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" />
     </svg>
   );
+}
+
+/** The small picture drawn for each item in the teal strip. */
+function featureIcon(icon: FeatureIcon) {
+  switch (icon) {
+    case "cactus":
+      return <CactusIcon className="text-[#eadbc5]/80" />;
+    case "sunrise":
+      return <SunriseIcon className="text-[#eadbc5]/80" />;
+    case "heart":
+      return <Heart className="h-8 w-8 text-[#eadbc5]/80" strokeWidth={1.4} />;
+    case "truck":
+      return <Truck className="h-8 w-8 text-[#eadbc5]/80" strokeWidth={1.4} />;
+  }
 }
 
 // ─── Main Component ────────────────────────────────────────────────────────────
@@ -173,14 +162,14 @@ export default function GarfiasRanchHomepage() {
             <div className="relative mx-auto max-w-7xl flex items-center justify-between px-4 sm:px-8 py-2">
               <img src="/logo.png" alt="Garfias Mountain Glass Art" className="h-[52px] sm:h-[60px] w-auto" />
               <nav className="hidden items-center gap-6 text-[11px] font-bold uppercase tracking-[0.12em] text-[#2e1f14] lg:flex">
-                {NAV_LINKS.map(({ label, href, external }) => (
+                {navLinks.map(({ label, href, external }) => (
                   <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}
                     className="hover:text-[#0b565c] transition-colors">{label}</a>
                 ))}
                 <span className="h-5 w-px bg-[#2e1f14]/25" />
-                <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#0b565c] transition-colors"><InstagramIcon className="h-4 w-4" /></a>
-                <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#0b565c] transition-colors"><FacebookIcon className="h-4 w-4" /></a>
-                <a href={ETSY} target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="hover:text-[#0b565c] transition-colors"><EtsyIcon className="h-4 w-4" /></a>
+                <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#0b565c] transition-colors"><InstagramIcon className="h-4 w-4" /></a>
+                <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#0b565c] transition-colors"><FacebookIcon className="h-4 w-4" /></a>
+                <a href={site.etsyUrl} target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="hover:text-[#0b565c] transition-colors"><EtsyIcon className="h-4 w-4" /></a>
               </nav>
               <button className="lg:hidden p-1.5 text-[#2e1f14] hover:text-[#0b565c] transition-colors" onClick={() => setMenuOpen(!menuOpen)} aria-label="Toggle menu">
                 {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -189,15 +178,15 @@ export default function GarfiasRanchHomepage() {
             {menuOpen && (
               <div className="lg:hidden border-t border-[#2e1f14]/10">
                 <nav className="flex flex-col text-[#2e1f14]">
-                  {NAV_LINKS.map(({ label, href, external }) => (
+                  {navLinks.map(({ label, href, external }) => (
                     <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}
                       onClick={() => setMenuOpen(false)}
                       className="px-6 py-3.5 text-[12px] font-bold uppercase tracking-[0.18em] border-b border-[#2e1f14]/10 hover:text-[#0b565c] transition-colors">{label}</a>
                   ))}
                   <div className="flex items-center gap-5 px-6 py-4">
-                    <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" className="text-[#0b565c] hover:opacity-65 transition-opacity"><InstagramIcon className="h-5 w-5" /></a>
-                    <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" className="text-[#0b565c] hover:opacity-65 transition-opacity"><FacebookIcon className="h-5 w-5" /></a>
-                    <a href={ETSY} target="_blank" rel="noopener noreferrer" className="text-[#0b565c] hover:opacity-65 transition-opacity"><EtsyIcon className="h-5 w-5" /></a>
+                    <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" className="text-[#0b565c] hover:opacity-65 transition-opacity"><InstagramIcon className="h-5 w-5" /></a>
+                    <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" className="text-[#0b565c] hover:opacity-65 transition-opacity"><FacebookIcon className="h-5 w-5" /></a>
+                    <a href={site.etsyUrl} target="_blank" rel="noopener noreferrer" className="text-[#0b565c] hover:opacity-65 transition-opacity"><EtsyIcon className="h-5 w-5" /></a>
                   </div>
                 </nav>
               </div>
@@ -207,14 +196,14 @@ export default function GarfiasRanchHomepage() {
 
         {/* Announcement bar */}
         <div className="bg-[#0b565c] py-2.5 text-center text-[11px] font-bold uppercase tracking-[0.28em] text-[#eadbc5]">
-          &#10022; &nbsp;Handmade Stained Glass Art Inspired by the Land We Love&nbsp; &#10022;
+          {`\u2726 \u00a0${site.announcement}\u00a0 \u2726`}
         </div>
 
         {/* Hero */}
         <section
           className="relative overflow-hidden min-h-[calc(100svh-38px)]"
           style={{
-            backgroundImage: "url('/hero.jpg')",
+            backgroundImage: `url('${hero.backgroundImage}')`,
             backgroundSize: "cover",
             backgroundPosition: "center 35%",
           }}
@@ -234,88 +223,41 @@ export default function GarfiasRanchHomepage() {
                 background: "radial-gradient(ellipse at 60% 50%, rgba(234,219,197,0.22) 0%, rgba(234,219,197,0) 68%)",
               }} />
 
-              {/* Desert cactus piece, kept as the Arizona anchor */}
-              <img
-                src="/Art1.avif"
-                alt="Desert cactus stained glass"
-                className="absolute w-[150px] xl:w-[172px]"
-                style={{
-                  top: "18%", right: "29%",
-                  transform: "rotate(-4.5deg)",
-                  border: "3px solid rgba(234,219,197,0.62)",
-                  borderRadius: "2px",
-                  boxShadow: "0 18px 50px rgba(0,0,0,0.34)",
-                  zIndex: 1,
-                }}
-              />
-
-              {/* Tropical scene, largest feature piece */}
-              <img
-                src="/tropical-scene.jpg"
-                alt="Stained glass tropical bird scene"
-                className="absolute w-[220px] xl:w-[258px]"
-                style={{
-                  top: "34%", right: "8%",
-                  transform: "rotate(2deg)",
-                  border: "3px solid rgba(234,219,197,0.62)",
-                  borderRadius: "2px",
-                  boxShadow: "0 22px 60px rgba(0,0,0,0.38)",
-                  zIndex: 3,
-                }}
-              />
-
-              {/* Lighthouse panel, lower supporting piece */}
-              <img
-                src="/lighthouse1.jpg"
-                alt="Stained glass lighthouse panel"
-                className="absolute w-[160px] xl:w-[184px]"
-                style={{
-                  top: "64%", right: "26%",
-                  transform: "rotate(-2deg)",
-                  border: "3px solid rgba(234,219,197,0.62)",
-                  borderRadius: "2px",
-                  boxShadow: "0 18px 50px rgba(0,0,0,0.34)",
-                  zIndex: 2,
-                }}
-              />
+              {desktopCollage.map(({ src, alt, widthClass, top, right, rotate, boxShadow, layer }) => (
+                <img
+                  key={src}
+                  src={src}
+                  alt={alt}
+                  className={`absolute ${widthClass}`}
+                  style={{
+                    top, right,
+                    transform: `rotate(${rotate}deg)`,
+                    border: "3px solid rgba(234,219,197,0.62)",
+                    borderRadius: "2px",
+                    boxShadow,
+                    zIndex: layer,
+                  }}
+                />
+              ))}
             </div>
           </div>
 
           {/* Art showcase – mobile only */}
           <div className="absolute inset-x-0 bottom-[10%] z-10 flex lg:hidden justify-center items-end gap-2 px-4 pointer-events-none">
-            <img
-              src="/lighthouse1.jpg"
-              alt="Stained glass lighthouse panel"
-              className="w-[78px]"
-              style={{
-                transform: "rotate(-3deg)",
-                border: "2px solid rgba(234,219,197,0.62)",
-                borderRadius: "2px",
-                boxShadow: "0 10px 28px rgba(0,0,0,0.36)",
-              }}
-            />
-            <img
-              src="/tropical-scene.jpg"
-              alt="Stained glass tropical bird scene"
-              className="w-[102px]"
-              style={{
-                transform: "rotate(1.5deg)",
-                border: "2px solid rgba(234,219,197,0.62)",
-                borderRadius: "2px",
-                boxShadow: "0 12px 32px rgba(0,0,0,0.4)",
-              }}
-            />
-            <img
-              src="/Art1.avif"
-              alt="Desert cactus stained glass"
-              className="w-[78px]"
-              style={{
-                transform: "rotate(-2deg)",
-                border: "2px solid rgba(234,219,197,0.62)",
-                borderRadius: "2px",
-                boxShadow: "0 10px 28px rgba(0,0,0,0.36)",
-              }}
-            />
+            {phoneCollage.map(({ src, alt, widthClass, rotate, boxShadow }) => (
+              <img
+                key={src}
+                src={src}
+                alt={alt}
+                className={widthClass}
+                style={{
+                  transform: `rotate(${rotate}deg)`,
+                  border: "2px solid rgba(234,219,197,0.62)",
+                  borderRadius: "2px",
+                  boxShadow,
+                }}
+              />
+            ))}
           </div>
 
           {/* Header / Nav — wrapped in relative so dropdown overlays hero */}
@@ -325,22 +267,24 @@ export default function GarfiasRanchHomepage() {
 
               {/* Desktop nav */}
               <nav className="hidden items-center gap-7 pt-6 text-[12px] font-bold uppercase tracking-[0.12em] text-[#2e1f14] lg:flex">
-                <a href="#" aria-current="page" className="border-b-2 border-[#0b565c] pb-0.5 text-[#0b565c]">Home</a>
-                <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 hover:text-[#0b565c] transition-colors">
-                  Shop <ChevronDown className="h-3 w-3" />
-                </a>
-                <a href="#about" className="hover:text-[#0b565c] transition-colors">About</a>
-                <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" className="hover:text-[#0b565c] transition-colors">Custom Orders</a>
-                <a href="#gallery" className="hover:text-[#0b565c] transition-colors">Gallery</a>
-                <a href="#contact" className="hover:text-[#0b565c] transition-colors">Contact</a>
+                {navLinks.map(({ label, href, external, current, arrow }) =>
+                  current ? (
+                    <a key={label} href={href} aria-current="page" className="border-b-2 border-[#0b565c] pb-0.5 text-[#0b565c]">{label}</a>
+                  ) : (
+                    <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}
+                      className={`${arrow ? "flex items-center gap-1 " : ""}hover:text-[#0b565c] transition-colors`}>
+                      {arrow ? `${label} ` : label}
+                      {arrow && <ChevronDown className="h-3 w-3" />}
+                    </a>
+                  ))}
                 <span className="h-7 w-px bg-[#2e1f14]/25" />
-                <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#0b565c] transition-colors">
+                <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#0b565c] transition-colors">
                   <InstagramIcon className="h-5 w-5" />
                 </a>
-                <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#0b565c] transition-colors">
+                <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#0b565c] transition-colors">
                   <FacebookIcon className="h-5 w-5" />
                 </a>
-                <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="hover:text-[#0b565c] transition-colors">
+                <a href={site.etsyUrl} target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="hover:text-[#0b565c] transition-colors">
                   <EtsyIcon className="h-5 w-5" />
                 </a>
               </nav>
@@ -366,14 +310,7 @@ export default function GarfiasRanchHomepage() {
                 }}
               >
                 <nav className="flex flex-col text-[#2e1f14]">
-                  {[
-                    { label: "Home", href: "#" },
-                    { label: "Shop", href: "https://www.etsy.com/shop/RMglassandcopper", external: true },
-                    { label: "About", href: "#about" },
-                    { label: "Custom Orders", href: "https://www.etsy.com/shop/RMglassandcopper", external: true },
-                    { label: "Gallery", href: "#gallery" },
-                    { label: "Contact", href: "#contact" },
-                  ].map(({ label, href, external }) => (
+                  {navLinks.map(({ label, href, external }) => (
                     <a
                       key={label}
                       href={href}
@@ -386,13 +323,13 @@ export default function GarfiasRanchHomepage() {
                     </a>
                   ))}
                   <div className="flex items-center gap-5 px-6 py-4">
-                    <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[#0b565c] hover:opacity-65 transition-opacity">
+                    <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-[#0b565c] hover:opacity-65 transition-opacity">
                       <InstagramIcon className="h-5 w-5" />
                     </a>
-                    <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[#0b565c] hover:opacity-65 transition-opacity">
+                    <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-[#0b565c] hover:opacity-65 transition-opacity">
                       <FacebookIcon className="h-5 w-5" />
                     </a>
-                    <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="text-[#0b565c] hover:opacity-65 transition-opacity">
+                    <a href={site.etsyUrl} target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="text-[#0b565c] hover:opacity-65 transition-opacity">
                       <EtsyIcon className="h-5 w-5" />
                     </a>
                   </div>
@@ -405,17 +342,17 @@ export default function GarfiasRanchHomepage() {
           <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-8 pb-4 sm:pb-16 lg:pb-20 pt-0 sm:pt-2">
             <div className="max-w-[620px] pt-3 sm:pt-4 lg:pt-6">
               <h1 className="pinyon text-[52px] sm:text-[68px] lg:text-[84px] leading-[1.1] tracking-[0.01em]">
-                Where light<br />
-                <span className="text-[#0b565c]">becomes art</span>
+                {hero.headline[0]}<br />
+                <span className="text-[#0b565c]">{hero.headline[1]}</span>
               </h1>
               <Diamond className="mt-4 sm:mt-6 text-[#0b565c]" />
               <p className="mt-4 sm:mt-5 max-w-[300px] text-[14px] sm:text-[16px] leading-relaxed">
-                30 years of stained glass, copper & color. Handmade in the Arizona desert.
+                {hero.subline}
               </p>
-              <a href="https://www.etsy.com/shop/RMglassandcopper" target="_blank" rel="noopener noreferrer"
+              <a href={site.etsyUrl} target="_blank" rel="noopener noreferrer"
                 className="mt-5 sm:mt-8 inline-flex items-center gap-3 bg-[#0b565c] px-6 sm:px-7 py-3 sm:py-4 playfair text-[11px] font-bold uppercase tracking-[0.2em] text-[#eadbc5] hover:bg-[#084d53] transition-colors"
               >
-                Shop the Collection <span className="ml-1">&#8594;</span>
+                {`${hero.buttonLabel} `}<span className="ml-1">&#8594;</span>
               </a>
             </div>
           </div>
@@ -426,28 +363,28 @@ export default function GarfiasRanchHomepage() {
       <section className="grid grid-cols-1 lg:grid-cols-3 reveal">
         <img
           className="h-[360px] w-full object-cover"
-          src="/shop1.jpg"
-          alt="Sheets of stained glass organized in the studio"
+          src={madeByHand.leftImage.src}
+          alt={madeByHand.leftImage.alt}
         />
         <div className="flex h-[360px] flex-col items-center justify-center bg-[#eadbc5] px-10 text-center">
           <SunRays />
-          <h2 className="playfair mt-3 text-[26px] font-black uppercase tracking-[0.04em]">Made by Hand.</h2>
-          <p className="playfair mt-0.5 text-[22px] italic text-[#0b565c]">Inspired by home.</p>
+          <h2 className="playfair mt-3 text-[26px] font-black uppercase tracking-[0.04em]">{madeByHand.heading}</h2>
+          <p className="playfair mt-0.5 text-[22px] italic text-[#0b565c]">{madeByHand.subheading}</p>
           <Diamond className="mt-4 mb-4 text-[#2e1f14]" />
           <p className="text-[13px] leading-relaxed max-w-[210px]">
-            Every piece is individually designed and handcrafted in our ranch studio in Arizona.
+            {madeByHand.text}
           </p>
           <a
             href="#about"
             className="mt-5 border border-[#2e1f14]/45 px-9 py-2.5 playfair text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#2e1f14]/5 transition-colors"
           >
-            Our Story
+            {madeByHand.buttonLabel}
           </a>
         </div>
         <img
           className="h-[360px] w-full object-cover"
-          src="/shop2.jpg"
-          alt="Garfias Mountain Glass Art studio workspace"
+          src={madeByHand.rightImage.src}
+          alt={madeByHand.rightImage.alt}
         />
       </section>
 
@@ -455,47 +392,37 @@ export default function GarfiasRanchHomepage() {
       <section id="about" className="bg-[#f2e5d2] px-8 py-16 scroll-mt-24">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
           <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#0b565c]">Meet the Artist</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.28em] text-[#0b565c]">{about.eyebrow}</p>
             <h2 className="playfair mt-3 text-[38px] font-black leading-tight text-[#2e1f14] sm:text-[46px]">
-              Ronda Myers
+              {about.name}
             </h2>
             <p className="playfair mt-2 text-[22px] italic text-[#0b565c]">
-              Garfias Mountain Glass Art
+              {about.tagline}
             </p>
             <Diamond className="mt-5 text-[#2e1f14]" />
           </div>
           <div className="space-y-4 text-[15px] leading-7 text-[#2e1f14]/82">
-            <p>
-              Ronda Myers has loved stained glass since childhood. Growing up in the Midwest, she was mesmerized by the stained glass windows in the Victorian homes around her hometown, drawn to their color, design, and the feeling they created when sunlight moved through them.
-            </p>
-            <p>
-              Even then, she wanted to know how those windows were made. Years later, after moving to Arizona, she found a stained glass course through a local city art program and finally had the chance to learn the craft herself.
-            </p>
-            <p>
-              With guidance from an experienced and encouraging instructor, Ronda learned the foundations of stained glass window making and kept going. More than 30 years later, she still designs, cuts, solders, and finishes each piece by hand from her Arizona studio.
-            </p>
-            <p>
-              She has also started creating copper and glass windchimes, made to bring color, light, and sound outdoors. Each one is built with glass beads, crystals, copper, and brass bells so it can stand up to weather and wind while keeping a delicate look.
-            </p>
-            <p>
-              Garfias Mountain Glass Art is her way of sharing that lifelong love of glass with others. She hopes each piece brings as much joy to its new home as she had while making it.
-            </p>
+            {about.paragraphs.map((paragraph) => (
+              <p key={paragraph}>
+                {paragraph}
+              </p>
+            ))}
             <div className="flex flex-col gap-3 pt-2 sm:flex-row">
               <a
-                href={ETSY}
+                href={site.etsyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center bg-[#0b565c] px-6 py-3 playfair text-[11px] font-bold uppercase tracking-[0.18em] text-[#eadbc5] hover:bg-[#084d53] transition-colors"
               >
-                Shop Available Pieces
+                {about.shopButtonLabel}
               </a>
               <a
-                href={ETSY}
+                href={site.etsyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center border border-[#2e1f14]/45 px-6 py-3 playfair text-[11px] font-bold uppercase tracking-[0.18em] text-[#2e1f14] hover:bg-[#2e1f14]/5 transition-colors"
               >
-                Ask About Custom Work
+                {about.customButtonLabel}
               </a>
             </div>
           </div>
@@ -511,7 +438,7 @@ export default function GarfiasRanchHomepage() {
               <span className="h-px w-14 bg-[#2e1f14]/55" />
             </div>
             <h2 className="playfair text-[17px] font-black uppercase tracking-[0.3em] whitespace-nowrap">
-              Shop by Category
+              {categoriesHeading}
             </h2>
             <div className="flex items-center gap-2.5">
               <span className="h-px w-14 bg-[#2e1f14]/55" />
@@ -522,7 +449,7 @@ export default function GarfiasRanchHomepage() {
             {categories.map((cat) => (
               <a
                 key={cat.title}
-                href="https://www.etsy.com/shop/RMglassandcopper"
+                href={site.etsyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group block overflow-hidden bg-[#eadbc5] shadow-md hover:shadow-xl transition-shadow"
@@ -549,34 +476,13 @@ export default function GarfiasRanchHomepage() {
       {/* Features strip */}
       <section className="bg-[#0b565c] reveal">
         <div className="mx-auto max-w-7xl grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {([
-            {
-              icon: <CactusIcon className="text-[#eadbc5]/80" />,
-              title: "Made by Hand",
-              text: "Each piece is cut, soldered and crafted with care in our Arizona studio.",
-            },
-            {
-              icon: <SunriseIcon className="text-[#eadbc5]/80" />,
-              title: "Inspired by Nature",
-              text: "The colors, textures and landscapes of the Southwest inspire every piece.",
-            },
-            {
-              icon: <Heart className="h-8 w-8 text-[#eadbc5]/80" strokeWidth={1.4} />,
-              title: "Made to Last",
-              text: "Quality glass and materials that stand the test of time.",
-            },
-            {
-              icon: <Truck className="h-8 w-8 text-[#eadbc5]/80" strokeWidth={1.4} />,
-              title: "Shipped with Care",
-              text: "Thoughtful packaging to ensure your art arrives safely.",
-            },
-          ] as Array<{ icon: ReturnType<typeof CactusIcon>; title: string; text: string }>).map(({ icon, title, text }, i) => (
+          {features.map(({ icon, title, text }, i) => (
             <div
               key={title}
               className={`flex items-start gap-4 px-7 py-7 border-white/15 ${i < 3 ? "lg:border-r" : ""
                 } ${i % 2 === 0 && i < 3 ? "md:border-r" : ""} border-b lg:border-b-0`}
             >
-              <div className="mt-0.5 shrink-0">{icon}</div>
+              <div className="mt-0.5 shrink-0">{featureIcon(icon)}</div>
               <div>
                 <h3 className="text-[11px] font-bold uppercase tracking-[0.18em] text-[#eadbc5]">{title}</h3>
                 <p className="mt-2 text-[12px] leading-relaxed text-[#eadbc5]/78">{text}</p>
@@ -594,20 +500,20 @@ export default function GarfiasRanchHomepage() {
               className="dancing text-5xl text-[#2e1f14]"
               style={{ fontFamily: "'Dancing Script', cursive", fontWeight: 700 }}
             >
-              Follow Along
+              {galleryIntro.heading}
             </h2>
             <p className="mt-3 text-[13px] leading-relaxed text-[#2e1f14]/75">
-              See new pieces, behind the scenes and ranch life.
+              {galleryIntro.blurb}
             </p>
             <div className="mt-4 flex gap-3 text-[#0b565c]">
-              <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:opacity-65 transition-opacity">
+              <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:opacity-65 transition-opacity">
                 <InstagramIcon className="h-6 w-6" />
               </a>
-              <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-65 transition-opacity">
+              <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:opacity-65 transition-opacity">
                 <FacebookIcon className="h-6 w-6" />
               </a>
             </div>
-            <p className="mt-2 text-[12px] font-bold text-[#2e1f14]">@garfiasranchglassart</p>
+            <p className="mt-2 text-[12px] font-bold text-[#2e1f14]">{site.instagramHandle}</p>
           </div>
           <div className="flex flex-1 flex-wrap items-center justify-center gap-x-5 gap-y-5 lg:justify-between">
             {galleryImages.map((image) => (
@@ -628,18 +534,13 @@ export default function GarfiasRanchHomepage() {
           <div>
             <Logo variant="footer" />
             <p className="mt-5 text-[11px] leading-relaxed text-[#eadbc5]/50">
-              &copy; 2025 Garfias Mountain Glass Art.<br />All Rights Reserved.
+              {footer.copyright[0]}<br />{footer.copyright[1]}
             </p>
           </div>
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">Shop & Studio</h3>
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">{footer.studioHeading}</h3>
             <ul className="mt-4 space-y-2.5 text-[13px] text-[#eadbc5]/65">
-              {[
-                { label: "Shop on Etsy", href: ETSY },
-                { label: "Ask About Custom Work", href: ETSY },
-                { label: "About Ronda", href: "#about" },
-                { label: "View Gallery", href: "#gallery" },
-              ].map(({ label, href }) => (
+              {footer.studioLinks.map(({ label, href }) => (
                 <li key={label}>
                   <a href={href} target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined} className="hover:text-[#eadbc5] transition-colors">{label}</a>
                 </li>
@@ -647,28 +548,28 @@ export default function GarfiasRanchHomepage() {
             </ul>
           </div>
           <div>
-            <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">Follow</h3>
+            <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">{footer.followHeading}</h3>
             <p className="mt-4 text-[13px] leading-relaxed text-[#eadbc5]/65">
-              See new pieces, studio updates, and works in progress.
+              {footer.followBlurb}
             </p>
             <div className="mt-5 flex gap-4 text-[#eadbc5]/75">
-              <a href="https://www.instagram.com/garfiasmountainglassart" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#eadbc5] transition-colors">
+              <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-[#eadbc5] transition-colors">
                 <InstagramIcon className="h-5 w-5" />
               </a>
-              <a href="https://www.facebook.com/garfiasranchglassart" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#eadbc5] transition-colors">
+              <a href={site.facebookUrl} target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-[#eadbc5] transition-colors">
                 <FacebookIcon className="h-5 w-5" />
               </a>
-              <a href={ETSY} target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="hover:text-[#eadbc5] transition-colors">
+              <a href={site.etsyUrl} target="_blank" rel="noopener noreferrer" aria-label="Etsy" className="hover:text-[#eadbc5] transition-colors">
                 <EtsyIcon className="h-5 w-5" />
               </a>
             </div>
           </div>
           <div>
             <h3 className="text-[11px] font-bold uppercase tracking-[0.22em] text-[#eadbc5]">
-              Let&apos;s Stay in Touch
+              {footer.newsletterHeading}
             </h3>
             <p className="mt-4 text-[13px] leading-relaxed text-[#eadbc5]/65">
-              Join our email list for studio updates, new pieces and shows.
+              {footer.newsletterBlurb}
             </p>
             <div className="mt-5 flex">
               <input
