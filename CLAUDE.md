@@ -51,9 +51,9 @@ Static assets are served from `/public/`. Key files:
 - `/logo.png` — full horizontal logo (header)
 - `/circle-logo.png` — circular logo (footer)
 - `/hero.jpg` — hero section background
-- `/Art1.avif`, `/Art4.avif`, `/Art5.webp` — artwork displayed in the hero art showcase
+- `/Art1.jpg` to `/Art5.jpg` — artwork. `Art1.jpg` is shown in the hero art showcase (see `src/data/collage.ts`); the others are not used on the page yet
 
-Placeholder category and gallery images are Unsplash URLs; these should eventually be replaced with real product photos.
+Every picture is a `.jpg` (logos and icons are `.png`). Keep photographs as `.jpg` so a new photo can replace one by keeping its file name, with no code change. The hero art pieces sit in frames of a fixed shape (`shapeClass` in `src/data/collage.ts`), so a photo of any shape is cropped to fit and the layout does not move.
 
 ## Scroll behavior
 
