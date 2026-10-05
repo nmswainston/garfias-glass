@@ -69,6 +69,8 @@ Static assets are served from `/public/`. Key files:
 
 Every picture is a `.jpg` (logos and icons are `.png`). Keep photographs as `.jpg` so a new photo can replace one by keeping its file name, with no code change. The hero art pieces sit in frames of a fixed shape (`shapeClass` in `src/data/collage.ts`), so a photo of any shape is cropped to fit and the layout does not move.
 
+Keep pictures light. Photos are saved with their longest side at about 1200 pixels (JPEG quality around 82), and the two logos at 640 and 400 pixels wide. A phone photo straight from the camera is 4000 pixels or more and several megabytes, so shrink it before it goes in `public/`, or visitors on a phone connection wait for it.
+
 ## Scroll behavior
 
 Three `useEffect` hooks in `GarfiasRanchHomepage` handle scroll-driven UI:
