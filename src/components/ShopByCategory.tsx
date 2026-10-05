@@ -6,16 +6,16 @@ export default function ShopByCategory() {
   return (
     <section className="bg-[#eadbc5] px-8 py-12 reveal">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-8 flex items-center justify-center gap-4 text-[#2e1f14]">
-          <div className="flex items-center gap-2.5">
+        <div className="mb-8 flex items-center justify-center gap-3 sm:gap-4 text-[#2e1f14]">
+          <div className="flex shrink-0 items-center gap-2.5">
             <span className="text-sm font-bold">&#8594;</span>
-            <span className="h-px w-14 bg-[#2e1f14]/55" />
+            <span className="h-px w-5 sm:w-14 bg-[#2e1f14]/55" />
           </div>
-          <h2 className="playfair text-[17px] font-black uppercase tracking-[0.3em] whitespace-nowrap">
+          <h2 className="playfair text-center text-[14px] sm:text-[17px] font-black uppercase tracking-[0.18em] sm:tracking-[0.3em] sm:whitespace-nowrap">
             {categoriesHeading}
           </h2>
-          <div className="flex items-center gap-2.5">
-            <span className="h-px w-14 bg-[#2e1f14]/55" />
+          <div className="flex shrink-0 items-center gap-2.5">
+            <span className="h-px w-5 sm:w-14 bg-[#2e1f14]/55" />
             <span className="text-sm font-bold">&#8592;</span>
           </div>
         </div>
