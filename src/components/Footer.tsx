@@ -52,7 +52,7 @@ export default function Footer() {
             <div className="mt-5 flex">
               <input
                 type="email"
-                placeholder="Email address"
+                placeholder={footer.newsletterPlaceholder}
                 autoComplete="email"
                 className="flex-1 min-w-0 bg-[#1d1009] border border-[#3e2b1c] px-4 py-3 text-[13px] text-[#eadbc5] placeholder:text-[#eadbc5]/35 focus:outline-none focus:border-[#0b565c]"
               />
@@ -60,7 +60,7 @@ export default function Footer() {
                 type="button"
                 className="bg-[#0b565c] px-5 text-[11px] font-bold uppercase tracking-[0.18em] text-[#eadbc5] hover:bg-[#084d53] transition-colors"
               >
-                Join
+                {footer.newsletterButton}
               </button>
             </div>
           </div>

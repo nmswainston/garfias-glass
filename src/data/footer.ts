@@ -21,4 +21,6 @@ export const footer = {
   showNewsletter: false,
   newsletterHeading: "Let's Stay in Touch",
   newsletterBlurb: "Join our email list for studio updates, new pieces and shows.",
+  newsletterPlaceholder: "Email address",
+  newsletterButton: "Join",
 };
