@@ -13,6 +13,12 @@ export const footer = {
   ],
   followHeading: "Follow",
   followBlurb: "See new pieces, studio updates, and works in progress.",
+  /**
+   * The email sign-up box in the last column. It is hidden (false) because it is not connected to a mailing list yet,
+   * and a box that looks like it works but does nothing would mislead visitors. Change this to true only once a mailing
+   * list is connected to the box in the page, which is a job for Nick.
+   */
+  showNewsletter: false,
   newsletterHeading: "Let's Stay in Touch",
   newsletterBlurb: "Join our email list for studio updates, new pieces and shows.",
 };
