@@ -22,13 +22,13 @@ The words, links and pictures of the site live in small files in `src/data/`, on
 
 | File | What it holds |
 |---|---|
-| `site.ts` | The name, the Etsy, Instagram and Facebook addresses, the Instagram handle, and the top banner line |
+| `site.ts` | The name, the page title on the browser tab and the search description (filled into `index.html` when the site is built), the two logo files, the Etsy, Instagram and Facebook addresses, the Instagram handle, and the top banner line |
 | `nav.ts` | The menu (one list used by the large menu, the one that slides in on scroll, and the phone menu) |
 | `collage.ts` | The art pieces pictured over the top banner, for large screens and for phones |
 | `home.ts` | The hero headline and button, the "Made by Hand" strip, the "Meet the Artist" text, and the teal strip of four promises |
 | `categories.ts` | The "Shop by Category" tiles |
 | `gallery.ts` | The "Follow Along" heading and text, and the row of gallery pictures (`galleryImages`) |
-| `footer.ts` | The footer's words and links, and `showNewsletter`, the switch for the email sign-up box (off until a mailing list is connected to it) |
+| `footer.ts` | The footer's words and links, the email box's words, and `showNewsletter`, the switch for the email sign-up box (off until a mailing list is connected to it) |
 
 `GarfiasRanchHomepage.tsx` is short. It keeps what the sections share (whether the menu is open, how far the visitor has scrolled, the scroll effects) and lists the sections top to bottom. Each section is its own small component in `src/components/`:
 
@@ -48,7 +48,7 @@ The words, links and pictures of the site live in small files in `src/data/`, on
 
 To add a section, make a component in `src/components/`, give it a data file in `src/data/`, and add one line to `GarfiasRanchHomepage.tsx`.
 
-Keep wording, addresses and pictures in `src/data/`, not in the component. Tailwind reads `src/data/` too, so a class name written there works.
+Keep wording, addresses and pictures in `src/data/`, not in the component. That includes the page title and search description: `index.html` holds only the placeholders `%PAGE_TITLE%` and `%PAGE_DESCRIPTION%`, and `vite.config.ts` fills them in from `site.ts` (escaped) at build time, so do not write them into `index.html`. Data files hold plain values only: no functions or logic, because a tool that edits them on a client's behalf checks that its changes are content and nothing else. The one exception is `new Date().getFullYear()` for the copyright year. Tailwind reads `src/data/` too, so a class name written there works.
 
 `src/SocialBrandIcons.tsx` exports three hand-rolled SVG icon components (`InstagramIcon`, `FacebookIcon`, `EtsyIcon`) because lucide-react dropped brand icons.
 
