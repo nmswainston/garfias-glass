@@ -7,7 +7,7 @@ export const site = {
   etsyUrl: "https://www.etsy.com/shop/RMglassandcopper",
   instagramUrl: "https://www.instagram.com/garfiasmountainglassart",
   facebookUrl: "https://www.facebook.com/garfiasranchglassart",
-  instagramHandle: "@garfiasranchglassart",
+  instagramHandle: "@garfiasmountainglassart",
   /** The title on the browser tab and in search results. */
   title: "Garfias Mountain Glass Art | Handmade Stained Glass",
   /** The description Google shows under the title: one or two sentences, under about 160 characters. */
