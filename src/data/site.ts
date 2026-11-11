@@ -19,7 +19,7 @@ export const site = {
    * Facebook and texts need a full address to find the share picture, so the share tags are only
    * added once this is filled in. Leave it empty until the final domain is known.
    */
-  siteUrl: "",
+  siteUrl: "https://garfiasmountainglassart.com",
   etsyUrl: "https://www.etsy.com/shop/RMglassandcopper",
   instagramUrl: "https://www.instagram.com/garfiasmountainglassart",
   facebookUrl: "https://www.facebook.com/garfiasranchglassart",
