@@ -5,13 +5,25 @@
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="apple-touch-icon" href="/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--site-meta-->
+    <!-- The title and the search description are written in src/data/site.ts and filled in here when the site is built. -->
+    <title>%PAGE_TITLE%</title>
+    <meta name="description" content="%PAGE_DESCRIPTION%" />
+    <!-- The tags that set the title, text and picture when the home page is shared (Facebook, texts, X). Filled in from src/data/site.ts. -->
+    <!--SHARE_TAGS-->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap"
       rel="stylesheet"
     />
+    <!-- Visitor counts (Umami: no cookies, no personal data). The website id is public. Caret reads the numbers from Umami. -->
+    <script
+      defer
+      src="https://cloud.umami.is/script.js"
+      data-website-id="61aedb00-9f24-4186-a7bc-d97568db95a1"
+      data-domains="garfiasmountainglassart.com,www.garfiasmountainglassart.com"
+      data-exclude-hash="true"
+    ></script>
   </head>
   <body>
     <div id="root"></div>

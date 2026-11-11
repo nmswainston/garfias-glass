@@ -16,7 +16,7 @@ export default function StickyHeader({ menuOpen, onToggleMenu, onCloseMenu }: Pr
       style={{ background: "rgba(234,219,197,0.94)", backdropFilter: "blur(14px)", WebkitBackdropFilter: "blur(14px)" }}
     >
       <div className="relative mx-auto max-w-7xl flex items-center justify-between px-4 sm:px-8 py-2">
-        <img src="/logo.png" alt="Garfias Mountain Glass Art" className="h-[52px] sm:h-[60px] w-auto" />
+        <img src={site.logoHeader} alt={site.name} className="h-[52px] sm:h-[60px] w-auto" />
         <nav className="hidden items-center gap-6 text-[11px] font-bold uppercase tracking-[0.12em] text-[#2e1f14] lg:flex">
           {navLinks.map(({ label, href, external }) => (
             <a key={label} href={href} target={external ? "_blank" : undefined} rel={external ? "noopener noreferrer" : undefined}
